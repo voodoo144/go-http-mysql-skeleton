@@ -21,18 +21,19 @@ func GetServiceConfig() *ServiceConfig {
 	config := ServiceConfig{}
 	log.Println("Trying to get configuration from env")
 	cfgType := reflect.TypeOf(config)
-	log.Println(cfgType)
 	for i := 0; i < cfgType.NumField(); i++ {
 		field := cfgType.Field(i)
-		log.Println(field)
 		tag := field.Tag
+		if len(tag) == 0 {
+			log.Fatal("Dont you forget to add tag for field: " + field.Name + " ?")
+		}
+		log.Println("Getting ENV variable: " + tag)
 		envvalue := os.Getenv(string(tag))
-		log.Println(envvalue)
+		log.Println("Value: " + envvalue)
 		field_value := reflect.ValueOf(&config).Elem().Field(i)
-		log.Println(field_value)
-		log.Println(field_value.CanSet())
 		field_value.SetString(envvalue)
 	}
+	log.Println("Final configuration:")
 	log.Println(config)
 	return &config
 }
