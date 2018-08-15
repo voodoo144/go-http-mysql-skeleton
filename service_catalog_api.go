@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"ServiceCatalogApi/handlers"
 	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
@@ -42,8 +42,6 @@ func main() {
 	log.Println("Starting application")
 	config := GetServiceConfig()
 	router := httprouter.New()
-	router.GET("/", func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		fmt.Println("test")
-	})
+	router.GET("/", handlers.BasicHandler)
 	log.Fatal(http.ListenAndServe(":"+config.Port, router))
 }
