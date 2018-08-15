@@ -6,6 +6,6 @@ import (
 	"net/http"
 )
 
-func BasicHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func BasicHandler(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	fmt.Println("test")
 }
