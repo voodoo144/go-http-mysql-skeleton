@@ -9,7 +9,7 @@ import (
 var _config *ServiceConfig
 
 type ServiceConfig struct {
-	Port          string "TEST_PORT"
+	Port          string "API_PORT"
 	MysqlUser     string "MYSQL_USER"
 	MysqlPassword string "MYSQL_PASSWORD"
 	MysqlHost     string "MYSQL_HOST"
